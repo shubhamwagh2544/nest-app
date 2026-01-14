@@ -15,7 +15,7 @@ import {
 import { CreatePropertyDto } from './dtos/createProperty.dto';
 import { ParseIdPipe } from './pipes/parseIdPipe';
 import { ZodValidationPipe } from './pipes/zodValidationPipe';
-import { createPropertySchema } from './dtos/createPropertyZodDto';
+import * as propertyZod from './dtos/createPropertyZodDto';
 import { RequestHeader } from './pipes/request-header';
 import { HeadersDto } from './dtos/headers.dto';
 import { PropertyService } from './property.service';
@@ -60,9 +60,9 @@ export class PropertyController {
     return 'true';
   }
   @Post()
-  @UsePipes(new ZodValidationPipe(createPropertySchema))
+  @UsePipes(new ZodValidationPipe(propertyZod.createPropertySchema))
   createPropertyAnother(
-    @Body() body: CreatePropertyDto,
+    @Body() body: propertyZod.CreatePropertyZodDto,
     // @Headers() headers: Record<string, string>,
     @RequestHeader(new ValidationPipe({ validateCustomDecorators: true }))
     headers: HeadersDto,
