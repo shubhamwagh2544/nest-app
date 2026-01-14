@@ -19,13 +19,14 @@ import { createPropertySchema } from './dtos/createPropertyZodDto';
 import { RequestHeader } from './pipes/request-header';
 import { HeadersDto } from './dtos/headers.dto';
 import { PropertyService } from './property.service';
+import { Property } from '../entities/property.entity';
 
 @Controller('property')
 export class PropertyController {
   constructor(private propertyService: PropertyService) {}
   @Get()
-  findAll(): string {
-    return this.propertyService.findAll();
+  async findAll(): Promise<Property[]> {
+    return await this.propertyService.findAll();
   }
   @Post()
   @HttpCode(201)
