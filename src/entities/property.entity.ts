@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { PropertyFeature } from './propertyFeature.entity';
 
 @Entity()
 export class Property {
@@ -8,4 +9,10 @@ export class Property {
   name: string;
   @Column({ default: 0 })
   age: number;
+  @OneToOne(
+    () => PropertyFeature,
+    (propertyFeature) => propertyFeature.property,
+    { cascade: true }, // {cascade: ["update"]}
+  )
+  propertyFeature: PropertyFeature;
 }
