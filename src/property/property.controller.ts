@@ -18,12 +18,14 @@ import { ZodValidationPipe } from './pipes/zodValidationPipe';
 import { createPropertySchema } from './dtos/createPropertyZodDto';
 import { RequestHeader } from './pipes/request-header';
 import { HeadersDto } from './dtos/headers.dto';
+import { PropertyService } from './property.service';
 
 @Controller('property')
 export class PropertyController {
+  constructor(private propertyService: PropertyService) {}
   @Get()
   findAll(): string {
-    return 'list of properties';
+    return this.propertyService.findAll();
   }
   @Post()
   @HttpCode(201)
