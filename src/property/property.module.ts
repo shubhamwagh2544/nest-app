@@ -21,5 +21,6 @@ import { Property } from '../entities/property.entity';
     },
     PropertyService,
   ],
+  exports: [],
 })
 export class PropertyModule {}
