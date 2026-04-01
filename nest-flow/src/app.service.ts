@@ -1,8 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { LoginDto } from './dtos/app.dto';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  post(body: LoginDto): LoginDto {
+    console.log('Service Hit');
+    throw new BadRequestException({
+      message: 'something went wrong',
+      data: {},
+    });
+    return body;
   }
 }
